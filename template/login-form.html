@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="page-wrapper">
+    <div style="margin-left:20px">
+        <h2>User Login</h2>
+        <form action="{% url 'user-login' %}" method="POST"> 
+            {% csrf_token %}
+            {% for f in form%}                    
+                    <div style="margin:20px">                        
+                        <label style="display:inline-block; width:150px;  vertical-align:top">
+                            {{f.label}}                            
+                        </label>
+                        <span style="margin-left:30px ">
+                                {{f}}
+                        </span>  
+                    </div>                    
+            {% endfor %}
+            <input type="submit">
+        </form>
+        {% for errors in form.non_field_errors %}
+            <span class="fieldWrapper" style="color:red ">
+                 {{ errors }}
+            </span>                
+        {% endfor %}                      
+    </div>
+</div>
+
+{% endblock %}

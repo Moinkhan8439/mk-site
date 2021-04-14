@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="page-wrapper" >
+    <div style="margin-left:20px">
+        <h2>New User Register</h2>
+        
+        <form action="{% url 'user-register' %}" method="POST"> 
+            {% csrf_token %}
+            {% for f in form%}
+                    
+                    <div style="margin:20px">                        
+                        <label style="display:inline-block; width:150px;  vertical-align:top">
+                            {{f.label}}
+                            {% if f.field.required %}
+                                <sup style="color:red" >*</sup> 
+                            {% endif %}                            
+                        </label>
+                        <span style="margin-left:30px ">
+                                {{f}}
+                        </span>  
+                        <span class="fieldWrapper" style="color:red ">
+                        {{ f.errors }}
+                       </span>                      
+                    </div>                    
+            {% endfor %}
+            <input type="submit">
+        </form>
+    </div>
+    
+</div>
+{% endblock %}
